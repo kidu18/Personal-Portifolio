@@ -1,0 +1,24 @@
+﻿
+C:\Users\kidis\OneDrive\Desktop\Projects\My Personal Portifolio\src\app\api\projects\[id]\route.ts
+  35:31  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\kidis\OneDrive\Desktop\Projects\My Personal Portifolio\src\app\page.tsx
+   16:3   warning  'Code' is defined but never used                                 @typescript-eslint/no-unused-vars
+   23:3   warning  'ExternalLink' is defined but never used                         @typescript-eslint/no-unused-vars
+   24:3   warning  'ShoppingBag' is defined but never used                          @typescript-eslint/no-unused-vars
+   25:11  warning  'HomeIcon' is defined but never used                             @typescript-eslint/no-unused-vars
+   26:3   warning  'Droplets' is defined but never used                             @typescript-eslint/no-unused-vars
+   27:3   warning  'Plane' is defined but never used                                @typescript-eslint/no-unused-vars
+   28:3   warning  'Box' is defined but never used                                  @typescript-eslint/no-unused-vars
+   29:3   warning  'Building2' is defined but never used                            @typescript-eslint/no-unused-vars
+   30:3   warning  'Stethoscope' is defined but never used                          @typescript-eslint/no-unused-vars
+  149:18  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  292:31  warning  'i' is defined but never used                                    @typescript-eslint/no-unused-vars
+  323:56  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  335:25  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  335:37  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  358:22  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  362:65  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+Γ£û 17 problems (7 errors, 10 warnings)
+

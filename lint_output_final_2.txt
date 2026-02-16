@@ -1,0 +1,10 @@
+﻿
+C:\Users\kidis\OneDrive\Desktop\Projects\My Personal Portifolio\src\app\page.tsx
+  283:31  warning  'i' is defined but never used  @typescript-eslint/no-unused-vars
+  314:77  error    Insert `ΓÅÄ┬╖┬╖┬╖┬╖┬╖┬╖┬╖┬╖┬╖┬╖┬╖┬╖┬╖┬╖┬╖┬╖┬╖`    prettier/prettier
+  353:79  error    Delete `┬╖open`                 prettier/prettier
+  354:18  error    Insert `┬╖open`                 prettier/prettier
+
+Γ£û 4 problems (3 errors, 1 warning)
+  3 errors and 0 warnings potentially fixable with the `--fix` option.
+
