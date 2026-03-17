@@ -89,7 +89,7 @@ export function Hero() {
                         src={settings?.profile.avatarUrl || "/uploads/1772008039691_my_img.jpg"}
                         alt={settings?.profile.name || "Kidist Gashaw"}
                         fill
-                        className="object-cover object-top contrast-125 grayscale"
+                        className="object-cover object-top"
                         priority
                     />
                 </motion.div>

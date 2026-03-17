@@ -42,7 +42,7 @@ export default function LoginPage() {
       } else {
         router.push("/admin");
         router.refresh();
-      // }
+      }
     } catch (err) {
       setError("An error occurred. Please try again.");
     } finally {

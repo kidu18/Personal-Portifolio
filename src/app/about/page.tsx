@@ -95,7 +95,7 @@ export default function AboutPage() {
 
           <div className="space-y-6 text-muted-foreground leading-relaxed text-lg">
             <p>
-              I am a Software Engineering graduate and Full-Stack Developer with over two years of hands-on experience building scalable, production-ready web applications. As the{" "}
+              I am a Software Engineering graduate from Arba Minch University and Full-Stack Developer with over two years of hands-on experience building scalable, production-ready web applications. As the{" "}
               <span className="text-foreground underline decoration-primary/50 font-semibold">
                 Founder of Rokina Startup
               </span>{" "}
@@ -214,6 +214,9 @@ export default function AboutPage() {
             <div className="space-y-4">
               <div className="font-bold text-xl text-primary">
                 B.Sc. in Software Engineering
+              </div>
+              <div className="font-semibold text-lg text-foreground">
+                Arba Minch University
               </div>
               <p className="text-muted-foreground leading-relaxed italic">
                 A solid foundation in system architecture, algorithmic complexity, and collaborative software development lifecycles. I build with theoretical depth and practical agility.

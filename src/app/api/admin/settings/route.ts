@@ -20,6 +20,7 @@ export async function GET() {
                     bio: "",
                     avatarUrl: "",
                     resumeUrl: "",
+                    email: "",
                 },
                 seo: {
                     title: "My Portfolio",
