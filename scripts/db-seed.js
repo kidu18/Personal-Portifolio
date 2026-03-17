@@ -14,7 +14,7 @@ async function main() {
   try {
     await client.connect();
     console.log("Connected to MongoDB");
-    const db = client.db();
+    const db = client.db("portfolio");
 
     const adminEmail = "admin@example.com";
     const adminPassword = "adminpassword123"; // In production, use hashed passwords!

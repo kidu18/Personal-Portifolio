@@ -5,119 +5,150 @@ import { Button } from "@/components/ui/Button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import Link from "next/link";
 import {
-  ChevronLeft,
   GraduationCap,
-  Briefcase,
   Code2,
   Database,
   Wrench,
   ShieldCheck,
   Cpu,
   Sparkles,
+  ChevronLeft,
+  UserCircle2,
+  Laptop,
 } from "lucide-react";
+import Image from "next/image";
+import { useSettings } from "@/components/SettingsProvider";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 
 export default function AboutPage() {
+  const settings = useSettings();
+
   const skills = [
     {
-      category: "Frontend Development",
+      category: "Full-Stack Development",
       icon: Code2,
-      tech: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+      tech: ["MERN Stack", "Next.js (App Router)", "TypeScript", "Node.js", "Express.js"],
     },
     {
-      category: "Backend Development",
-      icon: Cpu,
-      tech: [
-        "Node.js",
-        "Express",
-        "REST APIs",
-        "Authentication (JWT/NextAuth)",
-      ],
+      category: "Frontend Engineering",
+      icon: Sparkles,
+      tech: ["React", "Tailwind CSS", "Framer Motion", "SEO Optimization", "Performance/Accessibility"],
     },
     {
-      category: "Database & ORM",
+      category: "Backend & Infrastructure",
       icon: Database,
-      tech: ["MongoDB", "PostgreSQL", "Database Design"],
+      tech: ["MongoDB Atlas", "REST APIs", "Secure Authentication", "Vercel Deployment", "CI/CD"],
     },
     {
-      category: "Tools & DevOps",
+      category: "Entrepreneurial Engineering",
       icon: Wrench,
       tech: [
-        "Docker",
-        "AWS",
-        "Git/GitHub",
-        "SEO Optimization",
-        "System Architecture",
+        "MVP Strategy",
+        "Business Strategy",
+        "Growth-Driven Design",
+        "Digital Transformation",
+        "System Scalability",
       ],
     },
   ];
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-50 selection:bg-emerald-500/30">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 border-b border-zinc-800/50 glass">
-        <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-          <Link
-            href="/"
-            className="flex items-center gap-2 font-medium hover:text-emerald-400 transition-colors"
-          >
-            <ChevronLeft className="h-4 w-4" />
-            Back to Home
-          </Link>
-          <span className="text-xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-cyan-400">
-            PORTFOLIO
-          </span>
-        </div>
-      </nav>
+    <div className="flex flex-col min-h-screen bg-background text-foreground selection:bg-primary/30">
+      <Navbar />
 
-      <main className="max-w-4xl mx-auto px-4 py-32 space-y-32">
+      <main className="flex-1 max-w-4xl mx-auto px-4 py-32 space-y-32">
         {/* Professional Story */}
         <section className="space-y-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="space-y-6"
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold border border-emerald-500/20">
-              <ShieldCheck className="h-3 w-3" />
-              <span>Verified Full Stack Excellence</span>
-            </div>
-            <h1 className="text-5xl lg:text-7xl font-bold tracking-tight">
-              Kidist <span className="text-emerald-400">Gashaw</span>
-            </h1>
-            <p className="text-2xl text-zinc-400 font-medium">
-              Software Engineering Graduate & Full Stack Developer
-            </p>
+          <div className="flex flex-col md:flex-row items-center gap-8 mb-12">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="relative h-32 w-32 rounded-full border-2 border-primary/20 p-1 glass shrink-0 shadow-2xl"
+            >
+              <div className="relative h-full w-full rounded-full overflow-hidden">
+                <Image
+                  src={settings?.profile.avatarUrl || "/uploads/1772008039691_my_img.jpg"}
+                  alt={settings?.profile.name || "Kidist Gashaw"}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="absolute -bottom-2 -right-2 h-8 w-8 bg-background border border-border rounded-full flex items-center justify-center shadow-lg">
+                <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+              </div>
+            </motion.div>
 
-            <div className="space-y-6 text-zinc-400 leading-relaxed text-lg">
-              <p>
-                I am a highly skilled and detail-oriented Full Stack Developer
-                with strong experience in designing, developing, and deploying
-                modern web applications. I specialize in building{" "}
-                <span className="text-zinc-200 underline decoration-emerald-500/50">
-                  scalable, secure, and high-performance systems
-                </span>{" "}
-                using 2026-standard technologies.
-              </p>
-              <p>
-                My approach combines technical precision with a product-focused
-                mindset, ensuring that every line of code contributes to a
-                seamless and impactful user experience. Whether it's complex
-                database architecture or pixel-perfect frontend interfaces, I
-                strive for engineering excellence.
-              </p>
+            <div className="space-y-4 text-center md:text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold border border-primary/20 backdrop-blur-sm">
+                <UserCircle2 className="h-3.5 w-3.5" />
+                <span>Founder of Rokina Startup</span>
+              </div>
+              <h1 className="text-5xl lg:text-7xl font-bold tracking-tight">
+                {settings?.profile.name.split(" ")[0] || "Kidist"} <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-400">{settings?.profile.name.split(" ")[1] || "Gashaw"}</span>
+              </h1>
             </div>
-          </motion.div>
+          </div>
+          <p className="text-2xl text-muted-foreground font-medium">
+            Software Engineering Graduate & Entrepreneur
+          </p>
+
+          <div className="space-y-6 text-muted-foreground leading-relaxed text-lg">
+            <p>
+              I am a Software Engineering graduate and Full-Stack Developer with over two years of hands-on experience building scalable, production-ready web applications. As the{" "}
+              <span className="text-foreground underline decoration-primary/50 font-semibold">
+                Founder of Rokina Startup
+              </span>{" "}
+              , I combine technical expertise with entrepreneurial execution — delivering digital products that are not only functional, but strategically aligned with business growth.
+            </p>
+            <p>
+              I specialize in modern JavaScript ecosystems, crafting high-performance applications using MERN and Next.js architectures. My focus goes beyond writing code — I solve business problems, optimize performance, and design systems that scale.
+            </p>
+            <p>
+              I work with startups, entrepreneurs, and business owners globally who need reliable, scalable, and conversion-driven web solutions.
+            </p>
+          </div>
         </section>
 
-        {/* Skills Section */}
+        {/* Value Proposition */}
         <section className="space-y-16">
           <div className="space-y-4">
             <h2 className="text-3xl font-bold tracking-tight flex items-center gap-3">
-              <div className="h-8 w-1 bg-emerald-500 rounded-full" />
+              <div className="h-8 w-1 bg-primary rounded-full" />
+              The Value I Bring
+            </h2>
+            <p className="text-muted-foreground">
+              I don&apos;t just build websites — I build digital assets that generate revenue and scale.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="bg-card/50 border-border">
+              <CardContent className="p-6 space-y-4">
+                <h3 className="text-xl font-bold text-primary">Strategic Implementation</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  I translate complex business requirements into scalable technical solutions, ensuring your product is built for growth from day one.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="bg-card/50 border-border">
+              <CardContent className="p-6 space-y-4">
+                <h3 className="text-xl font-bold text-primary">Performance & Retention</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Optimizing for speed, SEO, and accessibility isn&apos;t an afterthought — it&apos;s a core part of my engineering process to maximize user retention.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* Technical Arsenal */}
+        <section className="space-y-16">
+          <div className="space-y-4">
+            <h2 className="text-3xl font-bold tracking-tight flex items-center gap-3">
+              <div className="h-8 w-1 bg-primary rounded-full" />
               Technical Arsenal
             </h2>
-            <p className="text-zinc-500">
+            <p className="text-muted-foreground">
               Mastering the stack to deliver production-ready solutions.
             </p>
           </div>
@@ -130,9 +161,9 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
               >
-                <Card className="bg-zinc-900/50 border-zinc-800 h-full hover:border-emerald-500/30 transition-all group">
+                <Card className="bg-card/50 border-border h-full hover:border-primary/30 transition-all group">
                   <CardHeader className="flex flex-row items-center gap-4 space-y-0">
-                    <div className="h-12 w-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
+                    <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
                       <skill.icon className="h-6 w-6" />
                     </div>
                     <CardTitle className="text-xl">{skill.category}</CardTitle>
@@ -141,7 +172,7 @@ export default function AboutPage() {
                     {skill.tech.map((t) => (
                       <span
                         key={t}
-                        className="px-3 py-1 rounded-full bg-zinc-950 border border-zinc-800 text-zinc-400 text-xs font-medium hover:border-emerald-500/50 hover:text-emerald-400 transition-colors"
+                        className="px-3 py-1 rounded-full bg-secondary border border-border text-muted-foreground text-xs font-medium hover:border-primary/50 hover:text-primary transition-colors"
                       >
                         {t}
                       </span>
@@ -153,81 +184,61 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Education & Values */}
-        <section className="py-16 border-t border-zinc-900 grid md:grid-cols-2 gap-12">
+        {/* Why Work With Me */}
+        <section className="py-16 border-t border-border grid md:grid-cols-2 gap-12">
           <div className="space-y-6">
-            <div className="h-12 w-12 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+            <div className="h-14 w-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary shadow-inner">
+              <UserCircle2 className="h-7 w-7" />
+            </div>
+            <h2 className="text-3xl font-bold tracking-tight">Why Partner With Me?</h2>
+            <ul className="space-y-4 text-muted-foreground text-lg">
+              <li className="flex items-start gap-4 p-4 rounded-2xl hover:bg-muted/50 transition-colors border border-transparent hover:border-border">
+                <div className="h-2.5 w-2.5 mt-2 rounded-full bg-primary shrink-0 shadow-[0_0_10px_var(--primary)]" />
+                <span>Founder-level product thinking and MVP strategy.</span>
+              </li>
+              <li className="flex items-start gap-4 p-4 rounded-2xl hover:bg-muted/50 transition-colors border border-transparent hover:border-border">
+                <div className="h-2.5 w-2.5 mt-2 rounded-full bg-primary shrink-0 shadow-[0_0_10px_var(--primary)]" />
+                <span>Long-term scalability mindset — not short-term fixes.</span>
+              </li>
+              <li className="flex items-start gap-4 p-4 rounded-2xl hover:bg-muted/50 transition-colors border border-transparent hover:border-border">
+                <div className="h-2.5 w-2.5 mt-2 rounded-full bg-primary shrink-0 shadow-[0_0_10px_var(--primary)]" />
+                <span>Strong communication and structured project execution.</span>
+              </li>
+            </ul>
+          </div>
+          <div className="space-y-6">
+            <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
               <GraduationCap className="h-6 w-6" />
             </div>
             <h2 className="text-2xl font-bold">Academic Foundation</h2>
-            <div className="space-y-2">
-              <div className="font-bold text-lg text-emerald-400">
+            <div className="space-y-4">
+              <div className="font-bold text-xl text-primary">
                 B.Sc. in Software Engineering
               </div>
-              <p className="text-zinc-500 leading-relaxed italic">
-                Graduated with a focus on system architecture, algorithms, and
-                collaborative software development cycles.
+              <p className="text-muted-foreground leading-relaxed italic">
+                A solid foundation in system architecture, algorithmic complexity, and collaborative software development lifecycles. I build with theoretical depth and practical agility.
               </p>
             </div>
-          </div>
-          <div className="space-y-6">
-            <div className="h-12 w-12 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400">
-              <Sparkles className="h-6 w-6" />
-            </div>
-            <h2 className="text-2xl font-bold">Core Strengths</h2>
-            <ul className="space-y-3 text-zinc-400 text-sm">
-              <li className="flex items-center gap-2">
-                <div className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                Detail-oriented system design
-              </li>
-              <li className="flex items-center gap-2">
-                <div className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                Performance-first development
-              </li>
-              <li className="flex items-center gap-2">
-                <div className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                Scalable database architecture
-              </li>
-            </ul>
           </div>
         </section>
 
         {/* Closing Quote */}
         <section className="text-center py-24 space-y-8">
-          <blockquote className="text-3xl lg:text-4xl font-serif italic text-zinc-300 max-w-2xl mx-auto leading-relaxed">
-            "I believe in building software that doesn't just work, but thrives
-            under pressure."
+          <blockquote className="text-3xl lg:text-4xl font-serif italic text-foreground/80 max-w-2xl mx-auto leading-relaxed">
+            &quot;I approach every project as a partnership — focused on delivering measurable impact, not just completed tasks.&quot;
           </blockquote>
           <Link href="/#contact">
             <Button
               size="lg"
-              className="rounded-full bg-emerald-500 hover:bg-emerald-600 text-zinc-950 font-bold px-12"
+              className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold px-12"
             >
-              Start a Conversation
+              Let&apos;s Build Something Scalable
             </Button>
           </Link>
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-zinc-900 py-12">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-8">
-          <p className="text-xs text-zinc-600">
-            Kidist Gashaw | Portfolio 2026
-          </p>
-          <div className="flex items-center gap-6 text-sm text-zinc-400">
-            <Link href="#" className="hover:text-emerald-400">
-              LinkedIn
-            </Link>
-            <Link href="#" className="hover:text-emerald-400">
-              GitHub
-            </Link>
-            <Link href="#" className="hover:text-emerald-400">
-              CV / Resume
-            </Link>
-          </div>
-        </div>
-      </footer>
-    </div>
+      <Footer />
+    </div >
   );
 }

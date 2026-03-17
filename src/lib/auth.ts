@@ -1,6 +1,16 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import clientPromise from "./mongodb";
+import bcrypt from "bcryptjs";
+import fs from "fs";
+import path from "path";
+
+const logDebug = (msg: string) => {
+  try {
+    const logPath = path.join(process.cwd(), "debug-auth.log");
+    fs.appendFileSync(logPath, `${new Date().toISOString()}: ${msg}\n`);
+  } catch (e) { }
+};
 
 // You should add NEXTAUTH_SECRET to your .env file
 export const authOptions: NextAuthOptions = {
@@ -20,30 +30,32 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Invalid credentials");
         }
 
-        console.log("Attempting login for:", credentials?.email);
+        const email = credentials.email.toLowerCase().trim();
+        const password = credentials.password;
+
+        console.error(">>> AUTH DEBUG: Authorize attempt for:", email);
         const client = await clientPromise;
-        const db = client.db();
+        const db = client.db("portfolio");
 
         const user = await db.collection("User").findOne({
-          email: credentials.email,
+          email: email,
         });
 
         console.log("User found in DB:", user ? "Yes" : "No");
 
         if (!user) {
-          console.log("User not found");
+          console.error(">>> AUTH DEBUG: User not found in database:", email);
           throw new Error("Invalid email or password");
         }
 
-        if (user.password !== credentials.password) {
-          console.log(
-            "Password mismatch. DB:",
-            user.password,
-            "Provided:",
-            credentials.password
-          );
+        const isValid = await bcrypt.compare(password, user.password);
+
+        if (!isValid) {
+          console.error(">>> AUTH DEBUG: Password mismatch for:", email);
           throw new Error("Invalid email or password");
         }
+
+        console.error(">>> AUTH DEBUG: Login successful for:", email);
 
         return {
           id: user._id.toString(),
@@ -57,6 +69,7 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
+        logDebug(`JWT callback: setting token for ${user.email}`);
         token.id = user.id;
         token.role = (user as any).role;
       }
@@ -64,6 +77,7 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       if (token && session.user) {
+        logDebug(`Session callback: setting user ${session.user.email}`);
         (session.user as any).id = token.id;
         (session.user as any).role = token.role;
       }

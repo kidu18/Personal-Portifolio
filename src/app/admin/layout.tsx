@@ -1,10 +1,19 @@
 import { Sidebar } from "@/components/admin/Sidebar";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
-export default function AdminLayout({
+export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    redirect("/login");
+  }
+
   return (
     <div className="flex h-screen bg-zinc-50 dark:bg-zinc-950">
       <Sidebar />

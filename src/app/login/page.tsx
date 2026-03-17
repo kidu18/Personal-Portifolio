@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import {
@@ -41,7 +42,7 @@ export default function LoginPage() {
       } else {
         router.push("/admin");
         router.refresh();
-      }
+      // }
     } catch (err) {
       setError("An error occurred. Please try again.");
     } finally {
@@ -107,6 +108,14 @@ export default function LoginPage() {
                   </span>
                 </Button>
               </div>
+            </div>
+            <div className="flex items-center justify-between px-1">
+              <Link
+                href="/forgot-password"
+                className="text-sm text-primary hover:underline transition-all"
+              >
+                Forgot Password?
+              </Link>
             </div>
           </CardContent>
           <CardFooter>
